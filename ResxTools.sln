@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResxDelta", "ResxDelta\Resx
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResxMerge", "ResxMerge\ResxMerge.csproj", "{C5ED3D5E-075D-4732-878B-7153116DDDAE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResxRm", "ResxRm\ResxRm.csproj", "{320C5534-6C43-4180-868B-4F6E89D5083F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C5ED3D5E-075D-4732-878B-7153116DDDAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5ED3D5E-075D-4732-878B-7153116DDDAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5ED3D5E-075D-4732-878B-7153116DDDAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{320C5534-6C43-4180-868B-4F6E89D5083F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{320C5534-6C43-4180-868B-4F6E89D5083F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{320C5534-6C43-4180-868B-4F6E89D5083F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{320C5534-6C43-4180-868B-4F6E89D5083F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -37,20 +37,37 @@ namespace ResxMerge
                     Console.WriteLine($"Original resources: {originalResources.Count}");
                     Console.WriteLine($"Delta resources: {deltaResources.Count}");
 
-                    int counter = 0;
+                    int modifiedCounter = 0;
                     foreach (var resx in originalResources)
                     {
                         var match = deltaResources.FirstOrDefault(x => x.Name.Equals(resx.Name));
-                        if (match != null) counter++;
-
+                        if (match != null)
+                        {
+                            modifiedCounter++;
+                            deltaResources.Remove(match);
+                        }
+                    
                         outputResxWriter.AddResource(new ResXDataNode(
                                 resx.Name,
                                 match != null ? match.GetValue(tnull).ToString() : resx.GetValue(tnull).ToString())
                             {Comment = resx.Comment});
                     }
 
-                    Console.WriteLine($"Modified resources: {counter}");
-                    Console.WriteLine($"Writting to {args[0]}...");
+                    var addedCounter = deltaResources.Count;
+                    if (addedCounter > 0)
+                    {
+                        foreach (var resToAdd in deltaResources)
+                        {
+                            outputResxWriter.AddResource(new ResXDataNode(
+                                resToAdd.Name,
+                                resToAdd.GetValue(tnull).ToString())
+                            { Comment = resToAdd.Comment });
+                        }
+                    }
+
+                    Console.WriteLine($"Modified resources: {modifiedCounter}\n" +
+                                      $"Added resources: {addedCounter}\n" +
+                                      $"Writting to {args[0]}...");
 
                     outputResxWriter.Generate();
                 }
