@@ -16,6 +16,12 @@ namespace ResxDelta
 
     class Program
     {
+        static string ShowHelp() =>
+            "usage: resxdelta newerFilePath olderFilePath\n\n" +
+            "The tool compares older and newer resource files and extracts the delta (added or modified strings).\n" +
+            "For now, it treats entries with changed keys as a completely new entry (it will be part of the delta\n" +
+            "file, even if the text value itself hasn't been modified).";
+
         static readonly ITypeResolutionService tnull = null;
         private const string DeltaFileName = "delta.resx";
 
@@ -41,7 +47,13 @@ namespace ResxDelta
 
         static void Main(string[] args)
         {
-            if(args.Length != 2) ExitWithError("Two arguments with file names have to be specified!\nusage: resxdelta newerFilePath olderFilePath");
+            if (args.Length == 1 && args[0].Equals("--help"))
+            {
+                Console.WriteLine(ShowHelp());
+                Environment.Exit(0);
+            }
+
+            if (args.Length != 2) ExitWithError("Two arguments with file names have to be specified!\nType --help for more info.");
             if(!File.Exists(args[0])) ExitWithError($"Specified file \"{args[0]}\" does not exist!");
             if (!File.Exists(args[1])) ExitWithError($"Specified file \"{args[1]}\" does not exist!");
 

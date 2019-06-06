@@ -9,6 +9,10 @@ namespace ResxMerge
 {
     class Program
     {
+        static string ShowHelp() =>
+            "usage: resxmerge originalResxFilePath translatedDeltaFilePath\n\n" +
+            "The tool merges translated delta file with the original resx file.";
+
         static readonly ITypeResolutionService tnull = null;
 
         private static void ExitWithError(string errorMessage)
@@ -19,9 +23,15 @@ namespace ResxMerge
 
         static void Main(string[] args)
         {
+            if (args.Length == 1 && args[0].Equals("--help"))
+            {
+                Console.WriteLine(ShowHelp());
+                Environment.Exit(0);
+            }
+
             if (args.Length != 2)
                 ExitWithError(
-                    "Two arguments with file names have to be specified!\nusage: resxmerge originalResxFilePath translatedDeltaFilePath");
+                    "Two arguments with file names have to be specified!\nType --help for more info.");
             if (!File.Exists(args[0])) ExitWithError($"Specified file \"{args[0]}\" does not exist!");
             if (!File.Exists(args[1])) ExitWithError($"Specified file \"{args[1]}\" does not exist!");
 
